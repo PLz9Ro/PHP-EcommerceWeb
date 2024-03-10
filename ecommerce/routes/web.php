@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\admin\AdminCategoryController;
 use App\Http\Controllers\admin\AdminController;
 use App\Http\Controllers\admin\AdminDashboardController;
 use Illuminate\Support\Facades\Route;
@@ -25,6 +26,13 @@ Route::group(['middleware'=>'admin'],function(){
     Route::get('admin/edit/{id}',[AdminController::class,'edit']);
     Route::post('admin/edit/{id}', [AdminController::class, 'update']);
     Route::get('admin/delete/{id}', [AdminController::class, 'destroy']);
+
+    Route::get('admin/category',[AdminCategoryController::class,'index']);
+    Route::get('admin/category/create',[AdminCategoryController::class,'create']);
+    Route::post('admin/category/create',[AdminCategoryController::class,'store']);
+    Route::get('admin/category/edit/{id}',[AdminCategoryController::class,'edit']);
+    Route::post('admin/category/edit/{id}', [AdminCategoryController::class, 'update']);
+    Route::get('admin/category/delete/{id}', [AdminCategoryController::class, 'destroy']);
 });
 Route::get('admin',[AuthController::class,'login_admin']);
 Route::post('admin',[AuthController::class,'auth_login_admin']);

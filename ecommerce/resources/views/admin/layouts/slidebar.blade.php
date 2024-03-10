@@ -49,7 +49,14 @@
                             </p>
                         </a>
                     </li>
-
+                    <li>
+                        <a href="{{ url('admin/category') }}" class="nav-link ">
+                            <i class="nav-icon fas fa-solid fa-globe"></i>
+                            <p>
+                                Category
+                            </p>
+                        </a>
+                    </li>
                     </class>
 
                     <li class="nav-item">

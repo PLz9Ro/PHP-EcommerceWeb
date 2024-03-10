@@ -7,7 +7,7 @@
     <div class="card">
         <div class="row container-fluid">
             <div class="card-header col-sm-6">
-                <h1 class="card-title">Admin List</h1>
+                <h1 class="card-title text-uppercase">Admin List</h1>
             </div>
             <div style="text-align:right;" class="col-sm-6">
                 <a href="{{ url('admin/create') }}" class="btn btn-info"> Create New Admin</a>
