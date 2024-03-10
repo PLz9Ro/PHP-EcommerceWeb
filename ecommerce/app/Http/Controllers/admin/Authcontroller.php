@@ -16,7 +16,7 @@ class Authcontroller extends Controller
     }
     public function auth_login_admin(Request $request)
     {
-        if (Auth::attempt(["email" => $request->email, "password" => $request->password, 'role' => 1])) {
+        if (Auth::attempt(["email" => $request->email, "password" => $request->password, 'role' => 1 , 'status'=> 1])) {
             return redirect('admin/dashboard');
         } else {
             return redirect()->back()->with('error', 'Please entrer current email and password');
