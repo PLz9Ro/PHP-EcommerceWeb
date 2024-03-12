@@ -11,9 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('category', function (Blueprint $table) {
-            $table->timestamps(); 
-            $table->foreignId('created_by')->constrained('users');
+        Schema::table('subcategory', function (Blueprint $table) {
+
         });
     }
 
@@ -22,8 +21,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('category', function (Blueprint $table) {
-            $table->dropColumn('created_by');
+        Schema::table('subcategory', function (Blueprint $table) {
         });
     }
 };

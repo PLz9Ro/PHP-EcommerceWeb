@@ -42,6 +42,22 @@
                         </a>
                     </li>
                     <li>
+                        <a href="{{ url('admin/category') }}" class="nav-link ">
+                            <i class="nav-icon fas fa-solid fa-layer-group"></i>
+                            <p>
+                                Category
+                            </p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ url('admin/sub_category') }}" class="nav-link ">
+                            <i class="nav-icon fas fa-solid fa-layer-group"></i>
+                            <p>
+                               Sub Category
+                            </p>
+                        </a>
+                    </li>
+                    <li>
                         <a href="{{ url('admin/product') }}" class="nav-link ">
                             <i class="nav-icon fas fa-solid fa-globe"></i>
                             <p>
@@ -49,14 +65,7 @@
                             </p>
                         </a>
                     </li>
-                    <li>
-                        <a href="{{ url('admin/category') }}" class="nav-link ">
-                            <i class="nav-icon fas fa-solid fa-globe"></i>
-                            <p>
-                                Category
-                            </p>
-                        </a>
-                    </li>
+                 
                     </class>
 
                     <li class="nav-item">

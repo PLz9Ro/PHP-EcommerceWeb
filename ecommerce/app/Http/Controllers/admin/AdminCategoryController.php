@@ -31,7 +31,7 @@ class AdminCategoryController extends Controller
         $category->meta_title= trim($request->meta_title);
         $category->meta_description= trim($request->meta_description);
         $category->meta_keys= trim($request->meta_keys);
-        $category->create_by = Auth::user()->id;
+        $category->created_by = Auth::user()->id;
         $category -> save();
         
         return redirect('admin/category')->with('success', 'Category Success Create');
