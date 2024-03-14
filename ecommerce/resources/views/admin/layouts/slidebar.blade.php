@@ -58,6 +58,14 @@
                         </a>
                     </li>
                     <li>
+                        <a href="{{ url('admin/brand') }}" class="nav-link ">
+                            <i class="nav-icon fas fa-solid fa-layer-group"></i>
+                            <p>
+                               Brand
+                            </p>
+                        </a>
+                    </li>
+                    <li>
                         <a href="{{ url('admin/product') }}" class="nav-link ">
                             <i class="nav-icon fas fa-solid fa-globe"></i>
                             <p>

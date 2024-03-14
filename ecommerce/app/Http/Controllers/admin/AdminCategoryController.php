@@ -57,7 +57,7 @@ class AdminCategoryController extends Controller
         $category->created_by = Auth::user()->id;
         $category -> save();
         
-        return redirect('admin/category')->with('success', 'Category Success Create');
+        return redirect('admin/category')->with('success', 'Category Success Update');
     }
     public function destroy($id){
         $category = Category::find($id);

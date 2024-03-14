@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\admin\AdminBrandController;
 use App\Http\Controllers\admin\AdminCategoryController;
 use App\Http\Controllers\admin\AdminController;
 use App\Http\Controllers\admin\AdminDashboardController;
@@ -41,6 +42,14 @@ Route::group(['middleware'=>'admin'],function(){
     Route::get('admin/sub_category/edit/{id}',[AdminSubCategoryController::class,'edit']);
     Route::post('admin/sub_category/edit/{id}', [AdminSubCategoryController::class, 'update']);
     Route::get('admin/sub_category/delete/{id}', [AdminSubCategoryController::class, 'destroy']);
+
+    Route::get('admin/brand',[AdminBrandController::class,'index']);
+    Route::get('admin/brand/create',[AdminBrandController::class,'create']);
+    Route::post('admin/brand/create',[AdminBrandController::class,'store']);
+    Route::get('admin/brand/edit/{id}',[AdminBrandController::class,'edit']);
+    Route::post('admin/brand/edit/{id}', [AdminBrandController::class, 'update']);
+    Route::get('admin/brand/delete/{id}', [AdminBrandController::class, 'destroy']);
+
 
 });
 Route::get('admin',[AuthController::class,'login_admin']);
