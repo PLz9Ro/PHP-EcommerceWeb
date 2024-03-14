@@ -51,7 +51,7 @@
                     </li>
                     <li>
                         <a href="{{ url('admin/sub_category') }}" class="nav-link ">
-                            <i class="nav-icon fas fa-solid fa-layer-group"></i>
+                            <i class="nav-icon fas fa-solid fa-water"></i>
                             <p>
                                Sub Category
                             </p>
@@ -59,9 +59,17 @@
                     </li>
                     <li>
                         <a href="{{ url('admin/brand') }}" class="nav-link ">
-                            <i class="nav-icon fas fa-solid fa-layer-group"></i>
+                            <i class="nav-icon fas fa-solid fa-puzzle-piece"></i>
                             <p>
                                Brand
+                            </p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ url('admin/color') }}" class="nav-link ">
+                            <i class="nav-icon fas fa-solid fa-palette"></i>
+                            <p>
+                               Color
                             </p>
                         </a>
                     </li>
