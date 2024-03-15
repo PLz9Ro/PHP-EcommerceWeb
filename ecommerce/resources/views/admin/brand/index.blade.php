@@ -42,7 +42,7 @@
                         <td>{{ $value->meta_keys }}</td>
                         <td>{{ $value->created_by_name }}</td>
                         <td>{{ ($value->status == 1) ? 'Active':'Block' }}</td>
-                        <td>{{ date('d-m-Y' ,strtotime($value->create_at)) }}</td>
+                        <td>{{ \Carbon\Carbon::parse($value->created_at)->format('d-m-Y') }}</td>
                         <td>
                         <a href="{{ url('admin/brand/edit/'.$value->id) }}" class="btn btn-outline-warning"> Edit</a>
                         <a href="{{ url('admin/brand/delete/'.$value->id) }}" class="btn btn-outline-danger" onclick="return confirm('Are you sure you want to delete this user?')"> Delete</a>

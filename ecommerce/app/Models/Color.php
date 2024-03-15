@@ -12,7 +12,7 @@ class Color extends Model
     static public function getSingle ($id){
         return self::find($id);
     } 
-    static public function getRecord()
+    static public function getRecord()  
     {
         return self::select('color.*', 'users.name as created_by_name')
             ->join('users', 'users.id', '=', 'color.created_by')

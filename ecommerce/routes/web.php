@@ -5,6 +5,7 @@ use App\Http\Controllers\admin\AdminCategoryController;
 use App\Http\Controllers\admin\AdminColorController;
 use App\Http\Controllers\admin\AdminController;
 use App\Http\Controllers\admin\AdminDashboardController;
+use App\Http\Controllers\admin\AdminProductController;
 use App\Http\Controllers\admin\AdminSubCategoryController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\admin\Authcontroller;
@@ -57,8 +58,12 @@ Route::group(['middleware'=>'admin'],function(){
     Route::get('admin/color/edit/{id}',[AdminColorController::class,'edit']);
     Route::post('admin/color/edit/{id}', [AdminColorController::class, 'update']);
     Route::get('admin/color/delete/{id}', [AdminColorController::class, 'destroy']);
-
-
+    //Product
+    Route::get('admin/product',[AdminProductController::class,'index']);
+    Route::get('admin/product/create',[AdminProductController::class,'create']);
+    Route::post('admin/product/create',[AdminProductController::class,'store']);
+    Route::get('admin/product/edit/{id}',[AdminProductController::class,'edit']);
+    Route::post('admin/product/edit/{id}', [AdminProductController::class, 'update']);
 
 });
 Route::get('admin',[AuthController::class,'login_admin']);

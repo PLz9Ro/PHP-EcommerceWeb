@@ -33,7 +33,7 @@
                         <td>{{ $value->name  }}</td>
                         <td>{{ $value->code  }}</td>
                         <td>{{ $value->created_by_name }}</td>
-                        <td>{{ date('d-m-Y' ,strtotime($value->create_at)) }}</td>
+                        <td>{{ \Carbon\Carbon::parse($value->created_at)->format('d-m-Y') }}</td>
                         <td>
                             <a href="{{ url('admin/color/edit/'.$value->id) }}" class="btn btn-outline-warning"> Edit</a>
                             <a href="{{ url('admin/color/delete/'.$value->id) }}" class="btn btn-outline-danger" onclick="return confirm('Are you sure you want to delete this user?')"> Delete</a>
