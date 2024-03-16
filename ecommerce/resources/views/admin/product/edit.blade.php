@@ -202,7 +202,7 @@
                         <input type="text" name="" placeholder="Name Size" class="form-control">\n\
                     </td>\n\
                     <td>\n\
-                        <input value="' + i + '" type="text" placeholder="Price" name="" class="form-control">\n\
+                        <input value="" type="text" placeholder="Price" name="" class="form-control">\n\
                     </td>\n\
                     <td>\n\
                         <input type="text" name="" placeholder="Quatity" class="form-control">\n\

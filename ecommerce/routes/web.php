@@ -6,6 +6,7 @@ use App\Http\Controllers\admin\AdminColorController;
 use App\Http\Controllers\admin\AdminController;
 use App\Http\Controllers\admin\AdminDashboardController;
 use App\Http\Controllers\admin\AdminProductController;
+use App\Http\Controllers\admin\AdminSizeController;
 use App\Http\Controllers\admin\AdminSubCategoryController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\admin\Authcontroller;
@@ -21,55 +22,61 @@ use App\Http\Controllers\admin\Authcontroller;
 */
 //admin
 
-Route::group(['middleware'=>'admin'],function(){
-    Route::get('admin/dashboard',[AdminDashboardController::class,'index']);
+Route::group(['middleware' => 'admin'], function () {
+    Route::get('admin/dashboard', [AdminDashboardController::class, 'index']);
 
-    Route::get('admin/list',[AdminController::class,'index']);
-    Route::get('admin/create',[AdminController::class,'create']);
-    Route::post('admin/create',[AdminController::class,'store']);
-    Route::get('admin/edit/{id}',[AdminController::class,'edit']);
+    Route::get('admin/list', [AdminController::class, 'index']);
+    Route::get('admin/create', [AdminController::class, 'create']);
+    Route::post('admin/create', [AdminController::class, 'store']);
+    Route::get('admin/edit/{id}', [AdminController::class, 'edit']);
     Route::post('admin/edit/{id}', [AdminController::class, 'update']);
     Route::get('admin/delete/{id}', [AdminController::class, 'destroy']);
     //Category
-    Route::get('admin/category',[AdminCategoryController::class,'index']);
-    Route::get('admin/category/create',[AdminCategoryController::class,'create']);
-    Route::post('admin/category/create',[AdminCategoryController::class,'store']);
-    Route::get('admin/category/edit/{id}',[AdminCategoryController::class,'edit']);
+    Route::get('admin/category', [AdminCategoryController::class, 'index']);
+    Route::get('admin/category/create', [AdminCategoryController::class, 'create']);
+    Route::post('admin/category/create', [AdminCategoryController::class, 'store']);
+    Route::get('admin/category/edit/{id}', [AdminCategoryController::class, 'edit']);
     Route::post('admin/category/edit/{id}', [AdminCategoryController::class, 'update']);
     Route::get('admin/category/delete/{id}', [AdminCategoryController::class, 'destroy']);
     //SubCategory
-    Route::get('admin/sub_category',[AdminSubCategoryController::class,'index']);
-    Route::get('admin/sub_category/create',[AdminSubCategoryController::class,'create']);
-    Route::post('admin/sub_category/create',[AdminSubCategoryController::class,'store']);
-    Route::get('admin/sub_category/edit/{id}',[AdminSubCategoryController::class,'edit']);
+    Route::get('admin/sub_category', [AdminSubCategoryController::class, 'index']);
+    Route::get('admin/sub_category/create', [AdminSubCategoryController::class, 'create']);
+    Route::post('admin/sub_category/create', [AdminSubCategoryController::class, 'store']);
+    Route::get('admin/sub_category/edit/{id}', [AdminSubCategoryController::class, 'edit']);
     Route::post('admin/sub_category/edit/{id}', [AdminSubCategoryController::class, 'update']);
     Route::get('admin/sub_category/delete/{id}', [AdminSubCategoryController::class, 'destroy']);
     Route::post('admin/get_sub_cate', [AdminSubCategoryController::class, 'get_sub_cate']);
     //Brand
-    Route::get('admin/brand',[AdminBrandController::class,'index']);
-    Route::get('admin/brand/create',[AdminBrandController::class,'create']);
-    Route::post('admin/brand/create',[AdminBrandController::class,'store']);
-    Route::get('admin/brand/edit/{id}',[AdminBrandController::class,'edit']);
+    Route::get('admin/brand', [AdminBrandController::class, 'index']);
+    Route::get('admin/brand/create', [AdminBrandController::class, 'create']);
+    Route::post('admin/brand/create', [AdminBrandController::class, 'store']);
+    Route::get('admin/brand/edit/{id}', [AdminBrandController::class, 'edit']);
     Route::post('admin/brand/edit/{id}', [AdminBrandController::class, 'update']);
     Route::get('admin/brand/delete/{id}', [AdminBrandController::class, 'destroy']);
     //Color
-    Route::get('admin/color',[AdminColorController::class,'index']);
-    Route::get('admin/color/create',[AdminColorController::class,'create']);
-    Route::post('admin/color/create',[AdminColorController::class,'store']);
-    Route::get('admin/color/edit/{id}',[AdminColorController::class,'edit']);
+    Route::get('admin/color', [AdminColorController::class, 'index']);
+    Route::get('admin/color/create', [AdminColorController::class, 'create']);
+    Route::post('admin/color/create', [AdminColorController::class, 'store']);
+    Route::get('admin/color/edit/{id}', [AdminColorController::class, 'edit']);
     Route::post('admin/color/edit/{id}', [AdminColorController::class, 'update']);
     Route::get('admin/color/delete/{id}', [AdminColorController::class, 'destroy']);
+    //Size
+    Route::get('admin/size', [AdminSizeController::class, 'index']);
+    Route::get('admin/size/create', [AdminSizeController::class, 'create']);
+    Route::post('admin/size/create', [AdminSizeController::class, 'store']);
+    Route::get('admin/size/edit/{id}', [AdminSizeController::class, 'edit']);
+    Route::post('admin/size/edit/{id}', [AdminSizeController::class, 'update']);
+    Route::get('admin/size/delete/{id}', [AdminSizeController::class, 'destroy']);
     //Product
-    Route::get('admin/product',[AdminProductController::class,'index']);
-    Route::get('admin/product/create',[AdminProductController::class,'create']);
-    Route::post('admin/product/create',[AdminProductController::class,'store']);
-    Route::get('admin/product/edit/{id}',[AdminProductController::class,'edit']);
+    Route::get('admin/product', [AdminProductController::class, 'index']);
+    Route::get('admin/product/create', [AdminProductController::class, 'create']);
+    Route::post('admin/product/create', [AdminProductController::class, 'store']);
+    Route::get('admin/product/edit/{id}', [AdminProductController::class, 'edit']);
     Route::post('admin/product/edit/{id}', [AdminProductController::class, 'update']);
-
 });
-Route::get('admin',[AuthController::class,'login_admin']);
-Route::post('admin',[AuthController::class,'auth_login_admin']);
-Route::get('admin/logout',[AuthController::class,'logout_admin']);
+Route::get('admin', [AuthController::class, 'login_admin']);
+Route::post('admin', [AuthController::class, 'auth_login_admin']);
+Route::get('admin/logout', [AuthController::class, 'logout_admin']);
 
 
 

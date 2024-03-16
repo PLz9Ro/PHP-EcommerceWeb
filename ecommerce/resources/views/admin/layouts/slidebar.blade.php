@@ -74,6 +74,14 @@
                         </a>
                     </li>
                     <li>
+                        <a href="{{ url('admin/size') }}" class="nav-link ">
+                            <i class="nav-icon fas fa-solid fa-key"></i>
+                            <p>
+                               Size
+                            </p>
+                        </a>
+                    </li>
+                    <li>
                         <a href="{{ url('admin/product') }}" class="nav-link ">
                             <i class="nav-icon fas fa-solid fa-globe"></i>
                             <p>
