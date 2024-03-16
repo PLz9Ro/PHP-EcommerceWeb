@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Brand;
 use App\Models\Category;
+use App\Models\Color;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -48,6 +50,8 @@ class AdminProductController extends Controller
         $product = Product::getSingle($product_id);
         if (!empty($product)) {
             $data['getCategory']=Category::getRecordActive();
+            $data['getBrand'] = Brand::getRecordActive();
+            $data['getColor'] = Color::getRecordActive();
             $data['product'] = $product;
             $data['header_title'] = "Edit Product";
             return view('admin.product.edit', $data);

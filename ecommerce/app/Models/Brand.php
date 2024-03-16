@@ -19,4 +19,12 @@ class Brand extends Model
             ->orderBy('brand.id', 'desc')
             ->get();
     }
+    static public function getRecordActive()
+    {
+        return self::select('brand.*', 'users.name as created_by_name')
+            ->join('users', 'users.id', '=', 'brand.created_by')
+            ->where('brand.status','=',1)
+            ->orderBy('brand.name', 'asc')
+            ->get();
+    }
 }

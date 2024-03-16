@@ -48,7 +48,7 @@
                     <div class="col-lg-6">
                       <div class="form-group">
                         <label for="category">Category<span style="color:red;">*</span></label>
-                        <select class="form-control" id="Category" name="Category">
+                        <select class="form-control" id="ChangeCategory" name="category_id">
                           <option value="" disabled>Select</option>
                           @foreach($getCategory as $category)
                           <option value="{{ $category->id }}">{{ $category->name }}</option>
@@ -59,7 +59,7 @@
                     <div class="col-lg-6">
                       <div class="form-group">
                         <label for="sub_category">Sub_category<span style="color:red;">*</span></label>
-                        <select class="form-control" id="sub_category" name="sub_category">
+                        <select class="form-control" id="GetSubCategory" name="sub_category_id">
                           <option value="">Chọn danh mục con</option>
                         </select>
                       </div>
@@ -75,19 +75,18 @@
                         <label for="brand">Brand<span style="color:red;">*</span></label>
                         <select class="form-control" id="brand" name="brand">
                           <option value="">Chọn thương hiệu</option>
+                          @foreach($getBrand as $brand)
+                          <option value="{{ $brand->id }}">{{ $brand->name }}</option>
+                          @endforeach
                         </select>
                       </div>
                       <div>
                         <label> Color</label>
+                        @foreach($getColor as $color)
                         <div>
-                          <label><input type="checkbox" name="color_id[]">Red</label>
+                          <label><input type="checkbox" name="color_id[]" value=" {{ $color->id }} ">{{ $color->name }}</label>
                         </div>
-                        <div>
-                          <label><input type="checkbox" name="color_id[]">White</label>
-                        </div>
-                        <div>
-                          <label><input type="checkbox" name="color_id[]">Black</label>
-                        </div>
+                        @endforeach
                       </div>
                     </div>
                     <div class="col-lg-6">
@@ -177,12 +176,10 @@
             </div>
             <!-- /.card -->
           </div>
-          <!--/.col (left) -->
-          <!-- right column -->
+
           <div class="col-md-6">
 
           </div>
-          <!--/.col (right) -->
         </div>
         <!-- /.row -->
       </div><!-- /.container-fluid -->
@@ -194,9 +191,29 @@
 @section('script')
 
 <!-- jquery-validation -->
-<script src="{{url('admin-asset/plugins/jquery-validation/jquery.validate.min.js')}}"></script>
-<script src="{{url('admin-asset/plugins/jquery-validation/additional-methods.min.js')}}"></script>
-<stript type='text/javascript'>
-    
+<!-- <script src="{{url('admin-asset/plugins/jquery-validation/jquery.validate.min.js')}}"></script>
+<script src="{{url('admin-asset/plugins/jquery-validation/additional-methods.min.js')}}"></script> -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script type="text/javascript">
+  $('body').on('change', '#ChangeCategory', function(e) {
+    var id = $(this).val();
+    $.ajax({
+      type: "POST",
+      url: "{{ url('admin/get_sub_cate') }}",
+      data: {
+        "id": id,
+        "_token": "{{ csrf_token() }}"
+      },
+      dataType: "json",
+      success: function(data) {
+        $('#GetSubCategory').html(data.html);
+      },
+      error: function(data) {
+        console.error(data);
+      }
+    });
+  });
 </script>
+
 @endsection
