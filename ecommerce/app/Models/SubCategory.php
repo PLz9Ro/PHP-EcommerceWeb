@@ -19,7 +19,7 @@ class SubCategory extends Model
         return self::select('subcategory.*', 'users.name as created_by_name', 'category.name as category_name')
             ->join('category', 'category.id', '=', 'subcategory.category_id')
             ->join('users', 'users.id', '=', 'subcategory.created_by')
-            ->orderBy('subcategory.id', 'desc')
+            ->orderBy('subcategory.id', 'asc')
             ->paginate(10);
     }
     static public function getRecordCategory($category_id)

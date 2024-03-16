@@ -48,7 +48,7 @@ class User extends Authenticatable
     static public function getAdmin(){
         return User::select('users.*')
                     ->where('role','=',1) 
-                    ->orderBy('id','desc')
+                    ->orderBy('id','asc')
                     ->get();
     }
 }

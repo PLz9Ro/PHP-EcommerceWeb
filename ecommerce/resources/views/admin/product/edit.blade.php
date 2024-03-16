@@ -60,7 +60,7 @@
                       <div class="form-group">
                         <label for="sub_category">Sub_category<span style="color:red;">*</span></label>
                         <select class="form-control" id="GetSubCategory" name="sub_category_id">
-                          <option value="">Chọn danh mục con</option>
+                          <option value="">Select</option>
                         </select>
                       </div>
                     </div>
@@ -74,7 +74,7 @@
                       <div class="form-group">
                         <label for="brand">Brand<span style="color:red;">*</span></label>
                         <select class="form-control" id="brand" name="brand">
-                          <option value="">Chọn thương hiệu</option>
+                          <option value="">Brand</option>
                           @foreach($getBrand as $brand)
                           <option value="{{ $brand->id }}">{{ $brand->name }}</option>
                           @endforeach
@@ -126,20 +126,19 @@
                               <th>#</th>
                             </tr>
                           </thead>
-                          <tbody>
+                          <tbody id="AppendSize">
                             <tr>
                               <td>
-                                <input type="text" name="" class="form-control">
+                                <input type="text" name="" placeholder="Name Size" class="form-control">
                               </td>
                               <td>
-                                <input type="text" name="" class="form-control">
+                                <input type="text" name="" placeholder="Price" class="form-control">
                               </td>
                               <td>
-                                <input type="text" name="" class="form-control">
+                                <input type="text" name="" placeholder="Quatity" class="form-control">
                               </td>
                               <td>
-                                <button type="button" class="btn btn-outline-info">Add</button>
-                                <button type="button" class="btn btn-outline-danger">Delete</button>
+                                <button type="button" class="btn btn-outline-info AddSize">Add</button>
                               </td>
                             </tr>
                           </tbody>
@@ -158,7 +157,7 @@
 
                   <div class="form-group">
                     <label for="description">Description<span style="color:red;">*</span></label>
-                    <textarea placeholder="Enter Description" type="text" name="description" class="form-control"></textarea>
+                    <textarea placeholder="Enter Description" type="text" name="description" class="form-control editor"></textarea>
                   </div>
                   <div class="form-group">
                     <label for="shippingreturns">ShippingReturns<span style="color:red;">*</span></label>
@@ -189,13 +188,38 @@
 @endsection
 
 @section('script')
-
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <!-- jquery-validation -->
 <!-- <script src="{{url('admin-asset/plugins/jquery-validation/jquery.validate.min.js')}}"></script>
 <script src="{{url('admin-asset/plugins/jquery-validation/additional-methods.min.js')}}"></script> -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <script type="text/javascript">
+  var i = 100;
+
+  $('body').on('click', '.AddSize', function(e) {
+    var html = '<tr id="DeleteSize' + i + '">\n\
+                    <td>\n\
+                        <input type="text" name="" placeholder="Name Size" class="form-control">\n\
+                    </td>\n\
+                    <td>\n\
+                        <input value="' + i + '" type="text" placeholder="Price" name="" class="form-control">\n\
+                    </td>\n\
+                    <td>\n\
+                        <input type="text" name="" placeholder="Quatity" class="form-control">\n\
+                    </td>\n\
+                    <td>\n\
+                        <button type="button" class="btn btn-outline-info DeleteSize" data-id="' + i + '">Delete</button>\n\
+                    </td>\n\
+                </tr>';
+    $('#AppendSize').append(html);
+    i++;
+  });
+
+  $('body').on('click', '.DeleteSize', function(e) {
+    var id = $(this).data('id');
+    $('#DeleteSize' + id).remove();
+  });
+
   $('body').on('change', '#ChangeCategory', function(e) {
     var id = $(this).val();
     $.ajax({
@@ -215,5 +239,4 @@
     });
   });
 </script>
-
 @endsection

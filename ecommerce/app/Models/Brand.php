@@ -16,7 +16,7 @@ class Brand extends Model
     {
         return self::select('brand.*', 'users.name as created_by_name')
             ->join('users', 'users.id', '=', 'brand.created_by')
-            ->orderBy('brand.id', 'desc')
+            ->orderBy('brand.id', 'asc')
             ->get();
     }
     static public function getRecordActive()

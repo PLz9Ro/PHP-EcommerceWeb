@@ -16,7 +16,7 @@ class Color extends Model
     {
         return self::select('color.*', 'users.name as created_by_name')
             ->join('users', 'users.id', '=', 'color.created_by')
-            ->orderBy('color.id', 'desc')
+            ->orderBy('color.id', 'asc')
             ->get();
     }
     static public function getRecordActive()  

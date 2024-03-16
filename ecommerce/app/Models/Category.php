@@ -16,7 +16,7 @@ class Category extends Model
     {
         return self::select('category.*', 'users.name as created_by_name')
             ->join('users', 'users.id', '=', 'category.created_by')
-            ->orderBy('category.id', 'desc')
+            ->orderBy('category.id', 'asc')
             ->get();
     }
     static public function getRecordActive()

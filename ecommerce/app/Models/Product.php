@@ -14,7 +14,7 @@ class Product extends Model
     static public function getRecord (){
         return self::select('product.*','users.name as created_by_name)')
                     ->join('users','users.id','=','product.created_by')
-                    ->orderBy('product.id','desc')
+                    ->orderBy('product.id','asc')
                     ->paginate(1);
     }
     protected $table = "product";
