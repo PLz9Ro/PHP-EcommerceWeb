@@ -21,5 +21,9 @@ class Product extends Model
     static public function checkSlug ($slug){
         return self::where("slug", "=",$slug)->count();
     }
+
+    public function getColor(){
+        return $this-> hasMany(ProductColor::class,'product_id');
+    }
     
 }

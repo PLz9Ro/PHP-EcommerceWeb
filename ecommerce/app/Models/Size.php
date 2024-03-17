@@ -19,4 +19,12 @@ class Size extends Model
             ->orderBy('size.id', 'asc')
             ->get();
     }
+    static public function getRecordActive()  
+    {
+        return self::select('size.*')
+            ->join('users', 'users.id', '=', 'size.created_by')
+            ->where('size.status','=','1')
+            ->orderBy('size.id', 'asc')
+            ->get();
+    }
 }

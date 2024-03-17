@@ -72,8 +72,8 @@
                   <div class="row">
                     <div class="col-lg-6">
                       <div class="form-group">
-                        <label for="brand">Brand<span style="color:red;">*</span></label>
-                        <select class="form-control" id="brand" name="brand">
+                        <label for="brand_id">Brand<span style="color:red;">*</span></label>
+                        <select class="form-control" id="brand_id" name="brand_id">
                           <option value="">Brand</option>
                           @foreach($getBrand as $brand)
                           <option value="{{ $brand->id }}">{{ $brand->name }}</option>
@@ -83,8 +83,18 @@
                       <div>
                         <label> Color</label>
                         @foreach($getColor as $color)
+                          @php
+                            $checked = '';
+                          @endphp
+                          @foreach($product->getColor as $productcolor)
+                            @if($productcolor->color_id == $color->id)
+                              @php
+                              $checked = 'checked';
+                              @endphp
+                            @endif
+                          @endforeach
                         <div>
-                          <label><input type="checkbox" name="color_id[]" value=" {{ $color->id }} ">{{ $color->name }}</label>
+                          <label><input {{ $checked }} type="checkbox" name="color_id[]" value="{{ $color->id }}">{{ $color->name }}</label>
                         </div>
                         @endforeach
                       </div>
@@ -129,13 +139,18 @@
                           <tbody id="AppendSize">
                             <tr>
                               <td>
-                                <input type="text" name="" placeholder="Name Size" class="form-control">
+                                <select class="form-control" id="size" name="size['100']['name']">
+                                  <option value="">Size</option>
+                                  @foreach($getSize as $size)
+                                  <option value="{{ $size->id }}">{{ $size->name }}</option>
+                                  @endforeach
+                                </select>
                               </td>
                               <td>
-                                <input type="text" name="" placeholder="Price" class="form-control">
+                                <input type="text" name="size['100']['price']" placeholder="Price" class="form-control">
                               </td>
                               <td>
-                                <input type="text" name="" placeholder="Quatity" class="form-control">
+                                <input type="text" name="size['100']['quatity']" placeholder="Quatity" class="form-control">
                               </td>
                               <td>
                                 <button type="button" class="btn btn-outline-info AddSize">Add</button>
@@ -151,13 +166,13 @@
 
                   <div class="form-group">
                     <label for="short_description">Short Description<span style="color:red;">*</span></label>
-                    <textarea placeholder="Enter Short Description" type="text" name="short_description" class="form-control"></textarea>
+                    <textarea placeholder="Enter Short Description"required  type="text"value="{{old('short_description', $product ->short_description) }}"  name="short_description" class="form-control"></textarea>
                   </div>
 
 
                   <div class="form-group">
                     <label for="description">Description<span style="color:red;">*</span></label>
-                    <textarea placeholder="Enter Description" type="text" name="description" class="form-control editor"></textarea>
+                    <textarea placeholder="Enter Description" required type="text" value="{{old('description', $product ->description) }}" name="description" class="form-control editor"></textarea>
                   </div>
                   <div class="form-group">
                     <label for="shippingreturns">ShippingReturns<span style="color:red;">*</span></label>
@@ -194,18 +209,23 @@
 <script src="{{url('admin-asset/plugins/jquery-validation/additional-methods.min.js')}}"></script> -->
 
 <script type="text/javascript">
-  var i = 100;
+  var i = 101;
 
   $('body').on('click', '.AddSize', function(e) {
     var html = '<tr id="DeleteSize' + i + '">\n\
-                    <td>\n\
-                        <input type="text" name="" placeholder="Name Size" class="form-control">\n\
+                     <td>\n\
+                        <select class="form-control" id="size' + i + '" name="size[' + i + '][name]">\n\
+                            <option value="">Size</option>\n\
+                            @foreach($getSize as $size)\n\
+                            <option value="{{ $size->id }}">{{ $size->name }}</option>\n\
+                            @endforeach\n\
+                        </select>\n\
                     </td>\n\
                     <td>\n\
-                        <input value="" type="text" placeholder="Price" name="" class="form-control">\n\
+                        <input value="" type="text" placeholder="Price" name="size[' + i + '][price]" class="form-control">\n\
                     </td>\n\
                     <td>\n\
-                        <input type="text" name="" placeholder="Quatity" class="form-control">\n\
+                        <input type="text" name="size[' + i + '][quatity]" placeholder="Quantity" class="form-control">\n\
                     </td>\n\
                     <td>\n\
                         <button type="button" class="btn btn-outline-info DeleteSize" data-id="' + i + '">Delete</button>\n\
@@ -214,7 +234,6 @@
     $('#AppendSize').append(html);
     i++;
   });
-
   $('body').on('click', '.DeleteSize', function(e) {
     var id = $(this).data('id');
     $('#DeleteSize' + id).remove();
