@@ -33,7 +33,7 @@
                         <td>{{ $value->id }}</td>
                         <td>{{ $value->title }}</td>
                         <td>{{ ($value->created_by == 1) ? 'Admin':'' }}</td>
-                        <td>{{ ($value->status ==0 )?'Active':'Block' }}</td>
+                        <td>{{ ($value->status ==1 )?'Active':'Block' }}</td>
                         <td>{{ \Carbon\Carbon::parse($value->created_at)->format('d-m-Y') }}</td>
 
                         <td>

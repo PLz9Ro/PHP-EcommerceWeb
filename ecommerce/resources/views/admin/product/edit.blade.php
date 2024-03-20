@@ -25,7 +25,7 @@
             <div class="card card-primary">
               <!-- /.card-header -->
               <!-- form start -->
-              <form id="quickForm" action="" method="post">
+              <form id="quickForm" action="" method="post" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <div class="card-body">
                   <div class="row">
@@ -163,6 +163,28 @@
 
                   </div>
 
+                  <div class="row">
+                    <div class="col-lg-12">
+                      <div class="form-group">
+                        <label>Image</label>
+                        <input type="file" name="image[]" class="form-control" style="padding:5px;" multiple accept="image/">
+                      </div>
+                    </div>
+                  </div>
+                  @if(!empty($product->getImage->count()))
+                  <div class="row">
+                    @foreach($product->getImage as $Image)
+                      @if(!empty($Image ->getLogo()))
+                        <div class="col-md-2">
+                          <img style="width:100%; height:200px;  object-fit: cover;" src=" {{ $Image->getLogo() }} " > 
+                          <a  href="{{ url('admin/product/image_delete/'.$Image->id) }}" style="margin-top:10px;" class="btn btn-outline-danger btn-sm">Delete</a>
+                        <hr>
+                        </div>
+
+                      @endif
+                    @endforeach
+                  </div>
+                  @endif
 
                   <div class="form-group">
                     <label for="short_description">Short Description<span style="color:red;">*</span></label>

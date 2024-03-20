@@ -73,6 +73,8 @@ Route::group(['middleware' => 'admin'], function () {
     Route::post('admin/product/create', [AdminProductController::class, 'store']);
     Route::get('admin/product/edit/{id}', [AdminProductController::class, 'edit']);
     Route::post('admin/product/edit/{id}', [AdminProductController::class, 'update']);
+    
+    Route::get('admin/product/image_delete/{id}', [AdminProductController::class, 'image_delete']);
 });
 Route::get('admin', [AuthController::class, 'login_admin']);
 Route::post('admin', [AuthController::class, 'auth_login_admin']);

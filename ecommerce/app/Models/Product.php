@@ -15,7 +15,7 @@ class Product extends Model
         return self::select('product.*','users.name as created_by_name)')
                     ->join('users','users.id','=','product.created_by')
                     ->orderBy('product.id','asc')
-                    ->paginate(1);
+                    ->paginate(10);
     }
     protected $table = "product";
     static public function checkSlug ($slug){
@@ -24,6 +24,10 @@ class Product extends Model
 
     public function getColor(){
         return $this-> hasMany(ProductColor::class,'product_id');
+    }
+
+    public function getImage(){
+        return $this-> hasMany(ProductImage::class,'product_id');
     }
     
 }
