@@ -5,11 +5,13 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class Authcontroller extends Controller
 {
     public function login_admin()
     {
+
         if (!empty(Auth::check() && Auth::user()->role == 1)) {
         }
         return view("admin.login");

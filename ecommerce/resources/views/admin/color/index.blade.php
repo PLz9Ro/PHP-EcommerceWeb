@@ -7,10 +7,10 @@
     <div class="card">
         <div class="row container-fluid">
             <div class="card-header col-sm-6">
-                <h1 class="card-title text-uppercase">Brand</h1>
+                <h1 class="card-title text-uppercase">Color</h1>
             </div>
             <div style="text-align:right;" class="col-sm-6">
-                <a href="{{ url('admin/color/create') }}" class="btn btn-info"> Create New Brand</a>
+                <a href="{{ url('admin/color/create') }}" class="btn btn-info"> Create New Color</a>
             </div>
         </div>
         <!-- /.card-header -->

@@ -46,7 +46,7 @@ class AdminProductController extends Controller
             $product->slug = $new_slug;
             $product->save();
         }
-        return redirect('admin/product/edit' . $product->id);
+        return redirect('admin/product' . $product->id);
     }
 
     public function edit($product_id)
