@@ -10,6 +10,8 @@ use App\Http\Controllers\admin\AdminSizeController;
 use App\Http\Controllers\admin\AdminSubCategoryController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\admin\Authcontroller;
+use App\Http\Controllers\HomeComtroller;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -73,6 +75,7 @@ Route::group(['middleware' => 'admin'], function () {
     Route::post('admin/product/create', [AdminProductController::class, 'store']);
     Route::get('admin/product/edit/{id}', [AdminProductController::class, 'edit']);
     Route::post('admin/product/edit/{id}', [AdminProductController::class, 'update']);
+    Route::get('admin/product/delete/{id}',[AdminProductController::class, 'destroy']);
     
     Route::get('admin/product/image_delete/{id}', [AdminProductController::class, 'image_delete']);
 });
@@ -81,7 +84,4 @@ Route::post('admin', [AuthController::class, 'auth_login_admin']);
 Route::get('admin/logout', [AuthController::class, 'logout_admin']);
 
 
-
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/',[HomeComtroller::class,'index']);
