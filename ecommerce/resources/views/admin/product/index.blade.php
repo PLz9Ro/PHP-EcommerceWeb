@@ -24,6 +24,7 @@
                         <th>Created By</th>
                         <th>Status</th>
                         <th>Create Date</th>
+                        <th>ProductImage</th>
                         <th>#</th>
                     </tr>
                 </thead>
@@ -34,6 +35,13 @@
                         <td>{{ $value->title }}</td>
                         <td>{{ ($value->created_by == 1) ? 'Admin':'' }}</td>
                         <td>{{ ($value->status ==1 )?'Active':'Block' }}</td>
+                        <td>
+                            @if($value->getImage->isNotEmpty())
+                            <div class="col-md-2">
+                                <img style="width:100px; height:100px;  object-fit: cover;" src="{{ $value->getImage->first()->getLogo() }}">
+                            </div>
+                            @endif
+                        </td>
                         <td>{{ \Carbon\Carbon::parse($value->created_at)->format('d-m-Y') }}</td>
 
                         <td>
@@ -43,8 +51,8 @@
 
                         </td>
 
-                    </tr>    
-                    @endforeach                   
+                    </tr>
+                    @endforeach
                 </tbody>
             </table>
             <div style="padding: 10px; float: right;">
