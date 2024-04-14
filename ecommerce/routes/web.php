@@ -85,6 +85,7 @@ Route::get('admin/logout', [AuthController::class, 'logout_admin']);
 
 Route::get('index',[HomeController::class,'index']);
 
-Route::post('/auth_register',[AuthController::class,'auth_register']);
-Route::post('/auth_login',[AuthController::class,'auth_login']);
+Route::post('auth_register',[AuthController::class,'auth_register']);
+Route::post('auth_login',[AuthController::class,'auth_login']);
 Route::get('activate/{id}',[AuthController::class,'activate_email']);
+Route::get('logout', [AuthController::class, 'logout']);

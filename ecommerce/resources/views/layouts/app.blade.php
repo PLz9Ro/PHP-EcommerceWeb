@@ -278,6 +278,8 @@
                         $('.LoadMore').attr('data-page', data.page);
                         if (data.status == true) {
                             location.reload();
+                            alert(data.message);
+
                         } else {
                             $('.LoadMore').show();
                             alert(data.message);

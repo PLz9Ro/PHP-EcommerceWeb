@@ -52,31 +52,75 @@ class Authcontroller extends Controller
         }
         echo json_encode($json);
     }
+    // public function auth_login(Request $request)
+    // {
+    //     $remember = empty($request->is_remember) ? false : true;
+    //     if(Auth::attempt(['email'=>$request->email,'password'=>$request->getPassword,'status'=>0],$remember)){
+    //         if(!empty(Auth::user()->email_verified_at)){
+    //             $json['status']=true;
+    //             $json['message'] ='sucsses';
+    //         }
+    //         else{
+    //             $json['status']=true;
+    //             $json['message'] ='your account email is not verified';
+    //         }
+
+
+    //     }
+    //     else{
+    //         $json['status']=true;
+    //         $json['message'] ='plase enter currect email and password ';
+    //     }
+
+    //     echo json_encode($json);
+
+    // }
     public function auth_login(Request $request)
     {
-        //$remember = empty($request->is_remember) ? false : true;
-    
-        if (Auth::attempt(['email' => $request->email, 'password' => $request->password, 'status' => 0])) {
-            if (!empty(Auth::user()->email_verified_at)) {
-                $json['status'] = true;
-                $json['message'] = 'success';
+        // Validate the request data
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
+
+        // Attempt to log in the user
+        $credentials = $request->only('email', 'password');
+        $remember = $request->has('is_remember');
+
+        if (Auth::attempt($credentials, $remember)) {
+            // Check if the user's email is verified
+            if (Auth::user()->email_verified_at !== null) {
+                // Return success response
+                return response()->json([
+                    'status' => true,
+                    'message' => 'Login successful',
+                ]);
             } else {
-                $user = User::getSingle(Auth::user()->id);  
-    
+                // Send email verification and logout the user
+                $user = Auth::user();
                 Mail::to($user->email)->send(new RegisterMail($user));
-    
                 Auth::logout();
-                    $json['status'] = false;
-                $json['message'] = 'Your account email not verified. Please check your inbox and verify your email address.';
+
+                // Return response for unverified email
+                return response()->json([
+                    'status' => false,
+                    'message' => 'Your email is not verified. Please check your inbox for verification instructions.',
+                ]);
             }
         } else {
-            $json['status'] = false;
-            $json['message'] = 'Please enter correct email and password';
+            // Return error response for invalid credentials
+            return response()->json([
+                'status' => false,
+                'message' => 'Invalid email or password',
+            ]);
         }
-    
-        return response()->json($json);
     }
-        public function activate_email($id)
+    public function logout()
+    {
+        Auth::logout();
+        return redirect('index');
+    }
+    public function activate_email($id)
     {
         $id = base64_decode($id);
         $user = User::getSingle($id);

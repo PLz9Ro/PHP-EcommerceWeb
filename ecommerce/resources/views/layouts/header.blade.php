@@ -113,7 +113,7 @@
                                 </div><!-- End .row -->
                             </div><!-- End .megamenu megamenu-sm -->
                         </li>
-                        
+
                     </ul><!-- End .menu -->
                 </nav><!-- End .main-nav -->
 
@@ -131,9 +131,17 @@
                     <i class="icon-heart-o"></i>
                     <span class="wishlist-count">3</span>
                 </a>
-                <div class="pl-3"style="display: flex; align-items: center;">
+                <div class="pl-3" style="display: flex; align-items: center;">
 
-                <a href="#signin-modal" data-toggle="modal"><i class="icon-user" style="font-size: 28px; width: 28px; height: 28px;"></i>Login</a>
+                    @if(Auth::check())
+                    <a href="{{ url('logout') }}">
+                        <i class="icon-logout" style="font-size: 28px; width: 28px; height: 28px;"></i> Logout
+                    </a>
+                    @else
+                    <a href="#signin-modal" data-toggle="modal">
+                        <i class="icon-user" style="font-size: 28px; width: 28px; height: 28px;"></i> Login
+                    </a>
+                    @endif
                 </div>
 
                 <div class="dropdown cart-dropdown">
@@ -201,6 +209,7 @@
             </div><!-- End .header-right -->
         </div><!-- End .container -->
     </div><!-- End .header-middle -->
+
     <div class="modal fade" id="signin-modal" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
@@ -221,16 +230,16 @@
                             </ul>
                             <div class="tab-content" id="tab-content-5">
                                 <div class="tab-pane fade show active" id="signin" role="tabpanel" aria-labelledby="signin-tab">
-                                    <form action="#" method="post" id="SubmitFormLogin">
+                                    <form action="" method="post" id="SubmitFormLogin">
                                         {{ csrf_field() }}
                                         <div class="form-group">
-                                            <label for="singin-email">Username or email address *</label>
-                                            <input type="text" class="form-control" id="email" name="email" required>
+                                            <label for="singin-email">Email address *</label>
+                                            <input type="text" class="form-control" id="singin-email" name="email" required>
                                         </div><!-- End .form-group -->
 
                                         <div class="form-group">
                                             <label for="singin-password">Password *</label>
-                                            <input type="password" class="form-control" id="password" name="password" required>
+                                            <input type="password" class="form-control" id="singin-password" name="password" required>
                                         </div><!-- End .form-group -->
 
                                         <div class="form-footer">
@@ -240,14 +249,14 @@
                                             </button>
 
                                             <div class="custom-control custom-checkbox">
-                                                <input type="checkbox" class="custom-control-input" id="signin-remember">
+                                                <input type="checkbox" name="is-remember" class="custom-control-input" id="signin-remember">
                                                 <label class="custom-control-label" for="signin-remember">Remember Me</label>
                                             </div><!-- End .custom-checkbox -->
 
                                             <a href="#" class="forgot-link">Forgot Your Password?</a>
                                         </div><!-- End .form-footer -->
                                     </form>
-                                   <!-- <div class="form-choice">
+                                    <!-- <div class="form-choice">
                                         <p class="text-center">or sign in with</p>
                                         <div class="row">
                                             <div class="col-sm-6">
