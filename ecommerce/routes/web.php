@@ -11,6 +11,7 @@ use App\Http\Controllers\admin\AdminSubCategoryController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\admin\Authcontroller;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProductController as ProductFont;
 
 /*
 |--------------------------------------------------------------------------
@@ -89,3 +90,8 @@ Route::post('auth_register',[AuthController::class,'auth_register']);
 Route::post('auth_login',[AuthController::class,'auth_login']);
 Route::get('activate/{id}',[AuthController::class,'activate_email']);
 Route::get('logout', [AuthController::class, 'logout']);
+
+
+//product
+
+Route::get('{slug?}',[ProductFont::class,'index']);

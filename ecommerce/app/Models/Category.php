@@ -12,6 +12,11 @@ class Category extends Model
     static public function getSingle ($id){
         return self::find($id);
     } 
+    static public function getSingleSlug ($slug){
+        return self::where('slug','=',$slug)
+            ->where('category.status','=',1)
+            ->first();
+    } 
     static public function getCategory()
     {
         return self::select('category.*', 'users.name as created_by_name')

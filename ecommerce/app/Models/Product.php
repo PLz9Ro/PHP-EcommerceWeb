@@ -17,6 +17,12 @@ class Product extends Model
                     ->orderBy('product.id','asc')
                     ->paginate(10);
     }
+    static public function getProduct (){
+        return self::select('product.*','users.name as created_by_name)')
+                    ->join('users','users.id','=','product.created_by')
+                    ->orderBy('product.id','asc')
+                    ->paginate(30);
+    }
     protected $table = "product";
     static public function checkSlug ($slug){
         return self::where("slug", "=",$slug)->count();
