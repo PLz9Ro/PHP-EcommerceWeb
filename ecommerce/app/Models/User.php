@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Http\Request;
+
 
 class User extends Authenticatable
 {
@@ -50,5 +52,10 @@ class User extends Authenticatable
                     ->where('role','=',1) 
                     ->orderBy('id','asc')
                     ->get();
+    }
+    static public function checkEmail($email){
+        return User::select('users.*')
+        ->where('email','=',$email) 
+        ->first();
     }
 }

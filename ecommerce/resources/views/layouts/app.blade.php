@@ -37,10 +37,10 @@
 
 <body>
     <div class="page-wrapper">
-        
-            @include('layouts.header')
-            @yield('content')
-            @include('layouts.footer')
+
+        @include('layouts.header')
+        @yield('content')
+        @include('layouts.footer')
 
     </div><!-- End .page-wrapper -->
     <button id="scroll-top" title="Back to Top"><i class="icon-arrow-up"></i></button>
@@ -217,7 +217,7 @@
         </div><!-- End .mobile-menu-wrapper -->
     </div><!-- End .mobile-menu-container -->
 
-  
+
     <!-- Plugins JS File -->
     <script src="{{ url('assets/js/jquery.min.js') }}"></script>
     <script src="{{ url('assets/js/bootstrap.bundle.min.js') }}"></script>
@@ -235,6 +235,61 @@
     <!-- Main JS File -->
     <script src="{{ url('assets/js/main.js') }}"></script>
     <script src="{{ url('assets/js/demos/demo-11.js') }}"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('body').on('submit', '#SubmitFormRegister', function(e) {
+                e.preventDefault();
+                $.ajax({
+                    type: "POST",
+                    url: "{{ url('auth_register') }}",
+                    data: $(this).serialize(),
+                    dataType: "json",
+                    success: function(data) {
+                        $('#getProductAjax').html(data.success);
+                        $('.LoadMore').attr('data-page', data.page);
+                        if (data.page == 0) {
+                            $('.LoadMore').hide();
+                            alert(data.message);
+
+                        } else {
+                            $('.LoadMore').show();
+                            alert(data.message);
+
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        console.error(xhr.responseText);
+                    }
+                });
+            });
+        });
+    </script>
+        <script type="text/javascript">
+        $(document).ready(function() {
+            $('body').on('submit', '#SubmitFormLogin', function(e) {
+                e.preventDefault();
+                $.ajax({
+                    type: "POST",
+                    url: "{{ url('auth_login') }}",
+                    data: $(this).serialize(),
+                    dataType: "json",
+                    success: function(data) {
+                        $('#getProductAjax').html(data.success);
+                        $('.LoadMore').attr('data-page', data.page);
+                        if (data.status == true) {
+                            location.reload();
+                        } else {
+                            $('.LoadMore').show();
+                            alert(data.message);
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        console.error(xhr.responseText);
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 
 

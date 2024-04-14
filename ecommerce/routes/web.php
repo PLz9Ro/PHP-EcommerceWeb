@@ -10,7 +10,7 @@ use App\Http\Controllers\admin\AdminSizeController;
 use App\Http\Controllers\admin\AdminSubCategoryController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\admin\Authcontroller;
-use App\Http\Controllers\HomeComtroller;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -83,5 +83,8 @@ Route::get('admin', [AuthController::class, 'login_admin']);
 Route::post('admin', [AuthController::class, 'auth_login_admin']);
 Route::get('admin/logout', [AuthController::class, 'logout_admin']);
 
+Route::get('index',[HomeController::class,'index']);
 
-Route::get('/',[HomeComtroller::class,'index']);
+Route::post('/auth_register',[AuthController::class,'auth_register']);
+Route::post('/auth_login',[AuthController::class,'auth_login']);
+Route::get('activate/{id}',[AuthController::class,'activate_email']);
